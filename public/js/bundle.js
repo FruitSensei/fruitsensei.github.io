@@ -7,6 +7,20 @@ var score = 0;
 var timer = 65;
 var gameOver = false;
 
+var fruits = [
+    function(){
+        
+    },
+    function(){
+        return "I am fruit one!";
+    },
+    function(){
+        
+    }
+]
+
+console.log(fruits[1]);
+
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
