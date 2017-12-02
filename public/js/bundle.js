@@ -412,23 +412,9 @@ var gameOver = false;
             Utils.collidableMeshList.push(lightsaber);
 
             /* LIGHTING */
-//            lightAngle = new THREE.PointLight(0x999999, 1, 500);
-//            lightAngle.position.set(0, 50, 0);
-//            scene.add(lightAngle);
-
-            var spotLight = new THREE.SpotLight(0xffffff);
-            spotLight.position.set(-2, 2, 8);
-
-            spotLight.castShadow = true;
-
-            spotLight.shadow.mapSize.width = 1024;
-            spotLight.shadow.mapSize.height = 1024;
-
-            spotLight.shadow.camera.near = 500;
-            spotLight.shadow.camera.far = 4000;
-            spotLight.shadow.camera.fov = 30;
-
-            scene.add(spotLight);
+            lightAngle = new THREE.PointLight(0x999999, 1, 500);
+            lightAngle.position.set(0, 50, 0);
+            scene.add(lightAngle);
 
             // AXIS
             var axis = new THREE.AxisHelper(200);
@@ -465,7 +451,7 @@ var gameOver = false;
             // Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
             window.setInterval(function () {
                 var newLaser = laser.clone();
-                newLaser.position.set(30, 100, Utils.getRandomInRange(-10, 10));
+                newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
                 newLaser.velocity = new THREE.Vector3(0, -0.5, 0);
                 lasers.push(newLaser);
