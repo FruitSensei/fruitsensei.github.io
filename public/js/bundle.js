@@ -480,7 +480,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 var newLaser = new Laser();
                 newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
-                newLaser.velocity = new THREE.Vector3(0, -0.25, 0);
+                newLaser.velocity = new THREE.Vector3(0, -0.20, 0);
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
@@ -558,8 +558,8 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             var elapsedSeconds = clock.getElapsedTime();
             requestAnimationFrame(animate);
             for (var i = 0; i < lasers.length; i++) {
-                lasers[i].rotation.x -= 0.01;
-                lasers[i].rotation.z -= 0.01;
+                lasers[i].rotation.x -= 0.03;
+                lasers[i].rotation.z -= 0.02;
             }
             update(clock.getDelta());
             if (isMobile) {
@@ -588,7 +588,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             Utils.checkCollision(lightsaber.children[0], "laser", true, function (result) {
                 if (result) {
                     socket.emit('sendhit');
-                    result.velocity = new THREE.Vector3(1, 0, 0);
+                    result.velocity = new THREE.Vector3(.7, 0, 0);
                     score++;
                     document.getElementById("score").innerHTML = score;
                     // play random hit sound when deflecting
