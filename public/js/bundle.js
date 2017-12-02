@@ -36,12 +36,11 @@ var gameOver = false;
 
             var corridor = new THREE.Object3D();
 
-            var wallGeometry = new THREE.PlaneGeometry(100, 125);
-
+            var wallGeometry = new THREE.PlaneGeometry(175, 125);
             var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
             wallTexture.wrapT = THREE.RepeatWrapping;
-            wallTexture.repeat.set(3, 1);
+            wallTexture.repeat.set(4, 1);
             // Floor Material
             var wallMaterial = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
@@ -52,8 +51,16 @@ var gameOver = false;
             });
 
             var ceilGeometry = new THREE.PlaneGeometry(100, 70);
+            var ceilTexture = textureLoader.load("/textures/dojo_ceil.jpg");
+            ceilTexture.wrapS = THREE.RepeatWrapping;
+            ceilTexture.wrapT = THREE.RepeatWrapping;
+            ceilTexture.repeat.set(5, 5);
             var ceilMaterial = new THREE.MeshBasicMaterial({
-                color: "green"
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 5,
+                shading: THREE.FlatShading,
+                map: ceilTexture
             });
 
             var doorGeometry = new THREE.PlaneGeometry(70, 150);
@@ -84,9 +91,9 @@ var gameOver = false;
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
-            ceil.position.set(-20, 50, 0);
+            ceil.position.set(-20, 150, 0);
 
-            corridor.add(wall1, wall2, door, ceil);
+            corridor.add(wall1, wall2, ceil); //Removed "door"
             return corridor;
         }
         module.exports = Corridor;
@@ -554,7 +561,7 @@ var gameOver = false;
                 started = true;
             }
             // stores urls of all hit sounds
-            var hitSounds = ["/sounds/hit1.wav", "/sounds/hit2.wav", "/sounds/hit3.wav", "/sounds/hit4.wav"];
+            var hitSounds = ["/sounds/slash1.mp3", "/sounds/slash2.mp3", "/sounds/slash3.mp3"];
 
             // Check collision with lightsaber and laser at every iteration
             // ALSO updates "score" to document each time laser is hit
