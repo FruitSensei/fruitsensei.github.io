@@ -81,7 +81,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(20, 0, 80);
             wall2.rotateY(Math.PI);
 
-            var front = new THREE.Mesh(doorGeometry, doorMaterial);
+            var front = new THREE.Mesh(frontGeometry, frontMaterial);
             front.rotateY(Math.PI / 2);
             front.position.set(-20, 0, 0);
 
@@ -413,9 +413,9 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
             lasers = []; // Keep lasers in here so we can manipulate them in update()
 
-            var sky = new Sky(textureLoader);
-            console.log(sky);
-            scene.add(sky);
+//            var sky = new Sky(textureLoader);
+//            console.log(sky);
+//            scene.add(sky);
 
             floor = new Floor(textureLoader, renderer);
             scene.add(floor);
