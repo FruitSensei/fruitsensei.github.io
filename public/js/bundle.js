@@ -605,7 +605,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
         socket.on('updatemotion', function (data) {});
 }, {
         "../../assets/Corridor": 1,
-        "../../assets/Laser": 2,
+        "../../assets/Fruit": 2,
         "../../assets/Floor": 3,
         "../../assets/Hand": 4,
         "../../assets/Katana": 5,
