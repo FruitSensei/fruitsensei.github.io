@@ -199,13 +199,13 @@ function changeRed() {
     5: [function (require, module, exports) {
         function Lightsaber() {
             /* LIGHTSABER MODEL */
-            var lsGeometry = new THREE.BoxGeometry(0.4, 0.3, 30);
+            var lsGeometry = new THREE.BoxGeometry(0.4, 30, 0.5);
             var lsMaterial = new THREE.MeshBasicMaterial({
                 color: "white"
             });
             lightsaber = new THREE.Mesh(lsGeometry, lsMaterial);
             lightsaber.position.setY(15);
-            var glowGeometry = new THREE.BoxGeometry(0.5, 0.4, 30);
+            var glowGeometry = new THREE.BoxGeometry(0.5, 30, 0.4);
             var glowMaterial = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: 0.5,
