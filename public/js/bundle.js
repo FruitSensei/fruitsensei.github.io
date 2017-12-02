@@ -71,7 +71,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 //            ceil.rotateX(-Math.PI / 2);
 //            ceil.position.set(0, 150, 0);
 
-            corridor.add(wall1, wall2, front, back);
+            corridor.add(wall1, wall2);
             return corridor;
         }
         module.exports = Corridor;
