@@ -562,12 +562,13 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             Utils.checkCollision(lightsaber.children[0], "laser", true, function (result) {
                 if (result) {
                     socket.emit('sendhit');
+                    console.log(result);
                     result.velocity = new THREE.Vector3(.7, 0, 0);
-                    if (result.fruitType == "Orange"){ 
+                    if (result.fruitType == "Watermelon"){ 
                         score = score + 10;
                     } else if (result.fruitType == "Apple"){ 
                         score = score + 20;
-                    } else if (result.fruitType == "Watermelon"){ 
+                    } else if (result.fruitType == "Orange"){ 
                         score = score + 30;
                     }
                     document.getElementById("score").innerHTML = score;
