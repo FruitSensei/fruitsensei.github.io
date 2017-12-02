@@ -7,19 +7,7 @@ var score = 0;
 var timer = 65;
 var gameOver = false;
 
-var fruits = [
-    function(){
-        
-    },
-    function(){
-        return "I am fruit one!";
-    },
-    function(){
-        
-    }
-]
-
-console.log(fruits[1]);
+var fruits = ["Apple", "Orange", "Watermelon"];
 
 (function e(t, n, r) {
     function s(o, u) {
@@ -55,6 +43,7 @@ console.log(fruits[1]);
             wallTexture.wrapS = THREE.RepeatWrapping;
             wallTexture.wrapT = THREE.RepeatWrapping;
             wallTexture.repeat.set(4, 1);
+
             // Floor Material
             var wallMaterial = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
@@ -77,20 +66,20 @@ console.log(fruits[1]);
                 map: ceilTexture
             });
 
-            var doorGeometry = new THREE.PlaneGeometry(70, 150);
-
-            var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
-            doorTexture.wrapS = THREE.RepeatWrapping;
-            doorTexture.wrapT = THREE.RepeatWrapping;
-            doorTexture.repeat.set(5, 5);
-            // Floor Material
-            var doorMaterial = new THREE.MeshPhongMaterial({
-                color: 0xffffff,
-                specular: 0xffffff,
-                shininess: 5,
-                shading: THREE.FlatShading,
-                map: doorTexture
-            });
+            //            var doorGeometry = new THREE.PlaneGeometry(70, 150);
+            //
+            //            var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
+            //            doorTexture.wrapS = THREE.RepeatWrapping;
+            //            doorTexture.wrapT = THREE.RepeatWrapping;
+            //            doorTexture.repeat.set(5, 5);
+            //            // Floor Material
+            //            var doorMaterial = new THREE.MeshPhongMaterial({
+            //                color: 0xffffff,
+            //                specular: 0xffffff,
+            //                shininess: 5,
+            //                shading: THREE.FlatShading,
+            //                map: doorTexture
+            //            });
 
             var wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
             wall1.position.set(20, 0, -80);
@@ -99,9 +88,9 @@ console.log(fruits[1]);
             wall2.position.set(20, 0, 80);
             wall2.rotateY(Math.PI);
 
-            var door = new THREE.Mesh(doorGeometry, doorMaterial);
-            door.rotateY(Math.PI / 2);
-            door.position.set(-20, 0, 0);
+            //            var door = new THREE.Mesh(doorGeometry, doorMaterial);
+            //            door.rotateY(Math.PI / 2);
+            //            door.position.set(-20, 0, 0);
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
@@ -115,12 +104,26 @@ console.log(fruits[1]);
 }, {}],
     2: [function (require, module, exports) {
         function Laser() {
-            var laserGeometry = new THREE.SphereGeometry(1, 32, 32);
-            var laserMaterial = new THREE.MeshBasicMaterial({color: 0xff9900});
-            var laserTexture = new THREE.TextureLoader().load("/textures/orange.jpg");
+            var currentFruit = fruits[Math.floor(Math.random() * 3)];
+            if (currentFruit == "Apple") {
+                var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
+                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
+                laserTexture.repeat.set(1, 1);
+            } else if (currentFruit == "Orange") {
+                var laserGeometry = new THREE.SphereGeometry(1, 32, 32);
+                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_orange.jpg");
+                laserTexture.repeat.set(1, 1);
+            } else if (currentFruit == "Watermelon") {
+                var laserGeometry = new THREE.SphereGeometry(1, 16, 12);
+                laserGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.5));
+                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_watermelon.jpg");
+                laserTexture.repeat.set(3, 1);
+            }
+            var laserMaterial = new THREE.MeshBasicMaterial({
+                color: 0xff9900
+            });
             laserTexture.wrapS = THREE.RepeatWrapping;
             laserTexture.wrapT = THREE.RepeatWrapping;
-            laserTexture.repeat.set(1, 1);
             laserMaterial.map = laserTexture;
             var laser = new THREE.Mesh(laserGeometry, laserMaterial);
             laser.rotateZ(Math.PI / 2);
