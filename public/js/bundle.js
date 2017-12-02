@@ -60,20 +60,19 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 map: ceilTexture
             });
 
-                        var doorGeometry = new THREE.PlaneGeometry(70, 150);
-            
-                        var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
-                        doorTexture.wrapS = THREE.RepeatWrapping;
-                        doorTexture.wrapT = THREE.RepeatWrapping;
-                        doorTexture.repeat.set(5, 5);
-                        // Floor Material
-                        var doorMaterial = new THREE.MeshPhongMaterial({
-                            color: 0xffffff,
-                            specular: 0xffffff,
-                            shininess: 5,
-                            shading: THREE.FlatShading,
-                            map: doorTexture
-                        });
+            var frontGeometry = new THREE.PlaneGeometry(70, 150);
+            var frontTexture = textureLoader.load("/textures/dojo_front.jpg");
+            frontTexture.wrapS = THREE.RepeatWrapping;
+            frontTexture.wrapT = THREE.RepeatWrapping;
+            frontTexture.repeat.set(5, 5);
+            // Floor Material
+            var frontMaterial = new THREE.MeshPhongMaterial({
+                color: 0xffffff,
+                specular: 0xffffff,
+                shininess: 5,
+                shading: THREE.FlatShading,
+                map: frontTexture
+            });
 
             var wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
             wall1.position.set(20, 0, -80);
@@ -82,15 +81,15 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(20, 0, 80);
             wall2.rotateY(Math.PI);
 
-                        var door = new THREE.Mesh(doorGeometry, doorMaterial);
-                        door.rotateY(Math.PI / 2);
-                        door.position.set(-20, 0, 0);
+            var front = new THREE.Mesh(doorGeometry, doorMaterial);
+            front.rotateY(Math.PI / 2);
+            front.position.set(-20, 0, 0);
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
             ceil.position.set(-20, 150, 0);
 
-            corridor.add(wall1, wall2, ceil, door);
+            corridor.add(wall1, wall2, ceil, front);
             return corridor;
         }
         module.exports = Corridor;
@@ -98,7 +97,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 }, {}],
     2: [function (require, module, exports) {
         function Laser() {
-            var currentFruit = fruits[Math.floor(Math.random()*3)];
+            var currentFruit = fruits[Math.floor(Math.random() * 3)];
             if (currentFruit == "Apple") {
                 var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
@@ -195,15 +194,15 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 }, {}],
     6: [function (require, module, exports) {
         function Sky(textureLoader) {
-//            var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
-//            var skyMaterial = new THREE.MeshBasicMaterial({
-//                map: textureLoader.load('textures/floor_metal.jpg'),
-//                side: THREE.BackSide
-//            });
-//            var skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
-//            skyDome.rotateY(-Math.PI / 2);
-//
-//            return skyDome;
+            //            var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
+            //            var skyMaterial = new THREE.MeshBasicMaterial({
+            //                map: textureLoader.load('textures/floor_metal.jpg'),
+            //                side: THREE.BackSide
+            //            });
+            //            var skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
+            //            skyDome.rotateY(-Math.PI / 2);
+            //
+            //            return skyDome;
         }
         module.exports = Sky;
 }, {}],
