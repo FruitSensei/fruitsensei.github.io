@@ -628,8 +628,6 @@ var gameOver = false;
         // initiates game
         socket.on('beginGame', function (data) {
             console.log("Game has Begun");
-            // changes lightsaberColor to selected
-            changeColor(data.color);
             init();
             animate();
         });
