@@ -43,12 +43,8 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wallTexture.wrapS = THREE.RepeatWrapping;
             wallTexture.wrapT = THREE.RepeatWrapping;
             wallTexture.repeat.set(4, 1);
-
-            // Floor Material
             var wallMaterial = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
-                specular: 0xffffff,
-                shininess: 5,
                 shading: THREE.FlatShading,
                 map: wallTexture
             });
@@ -60,8 +56,6 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             ceilTexture.repeat.set(5, 5);
             var ceilMaterial = new THREE.MeshBasicMaterial({
                 color: 0xffffff,
-                specular: 0xffffff,
-                shininess: 5,
                 shading: THREE.FlatShading,
                 map: ceilTexture
             });
@@ -201,19 +195,17 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 }, {}],
     6: [function (require, module, exports) {
         function Sky(textureLoader) {
-
-            var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
-            var skyMaterial = new THREE.MeshBasicMaterial({
-                map: textureLoader.load('textures/floor_metal.jpg'),
-                side: THREE.BackSide
-            });
-            var skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
-            skyDome.rotateY(-Math.PI / 2);
-
-            return skyDome;
+//            var skyGeometry = new THREE.SphereGeometry(10000, 10000, 25, 25);
+//            var skyMaterial = new THREE.MeshBasicMaterial({
+//                map: textureLoader.load('textures/floor_metal.jpg'),
+//                side: THREE.BackSide
+//            });
+//            var skyDome = new THREE.Mesh(skyGeometry, skyMaterial);
+//            skyDome.rotateY(-Math.PI / 2);
+//
+//            return skyDome;
         }
         module.exports = Sky;
-
 }, {}],
     7: [function (require, module, exports) {
         function Enemy_1() {
