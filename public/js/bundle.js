@@ -36,7 +36,7 @@ var gameOver = false;
 
             var corridor = new THREE.Object3D();
 
-            var wallGeometry = new THREE.PlaneGeometry(1450, 475);
+            var wallGeometry = new THREE.PlaneGeometry(200, 200);
 
             var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
@@ -72,10 +72,10 @@ var gameOver = false;
             });
 
             var wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
-            wall1.position.set(20, 0, -35);
+            wall1.position.set(20, 0, -80);
 
             var wall2 = wall1.clone();
-            wall2.position.set(20, 0, 35);
+            wall2.position.set(20, 0, 80);
             wall2.rotateY(Math.PI);
 
             var door = new THREE.Mesh(doorGeometry, doorMaterial);
@@ -113,10 +113,10 @@ var gameOver = false;
 
             /* FLOOR */
             // Floor Texture
-            var floorTexture = textureLoader.load("/textures/floor_metal.jpg");
+            var floorTexture = textureLoader.load("/textures/dojo_floor.jpg");
             floorTexture.wrapS = THREE.RepeatWrapping;
             floorTexture.wrapT = THREE.RepeatWrapping;
-            floorTexture.repeat.set(75, 75);
+            floorTexture.repeat.set(5, 5);
             floorTexture.anisotropy = renderer.getMaxAnisotropy();
 
             // Floor Material
