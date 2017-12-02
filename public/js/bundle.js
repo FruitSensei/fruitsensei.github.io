@@ -80,7 +80,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
             var front = new THREE.Mesh(frontGeometry, frontMaterial);
             front.rotateY(Math.PI / 2);
-            front.position.set(0, 0, 20);
+            front.position.set(0, 0, -20);
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
