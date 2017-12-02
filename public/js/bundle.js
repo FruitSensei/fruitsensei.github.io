@@ -75,11 +75,11 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             back.position.set(80, 0, 0);
             back.rotateX(Math.PI / 2);
 
-            var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
-            ceil.rotateX(-Math.PI / 2);
-            ceil.position.set(0, 150, 0);
+//            var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
+//            ceil.rotateX(-Math.PI / 2);
+//            ceil.position.set(0, 150, 0);
 
-            corridor.add(wall1, wall2, ceil, front);
+            corridor.add(wall1, wall2, front, back);
             return corridor;
         }
         module.exports = Corridor;
