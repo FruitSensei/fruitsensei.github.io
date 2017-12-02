@@ -6,47 +6,7 @@ if (/Mobi/.test(navigator.userAgent)) {
 var score = 0;
 var timer = 65;
 var gameOver = false;
-// Modifies color of the lightsaber based on option clicked (default is blue)
-// also highlights the option selected, and dehighlights the rest
-var lightsaberColor = "#00ffff";
-var laserColor = "#ff3346";
 
-function changeColor(color) {
-    if (color == 'blue') {
-        lightsaberColor = "#00ffff";
-        laserColor = "#ff3346";
-    } else if (color == 'green') {
-        lightsaberColor = "#05B805";
-        laserColor = "#ff3346";
-    } else if (color == 'red') {
-        lightsaberColor = "#ff0000";
-        laserColor = "#00ffff";
-    }
-}
-
-function changeBlue() {
-    document.getElementById("blueSaber").style["opacity"] = "1";
-    document.getElementById("redSaber").style["opacity"] = "0.5";
-    document.getElementById("greenSaber").style["opacity"] = "0.5";
-    lightsaberColor = "#00ffff";
-    laserColor = "#ff3346";
-}
-
-function changeGreen() {
-    document.getElementById("greenSaber").style["opacity"] = "1";
-    document.getElementById("blueSaber").style["opacity"] = "0.5";
-    document.getElementById("redSaber").style["opacity"] = "0.5";
-    lightsaberColor = "#05B805";
-    laserColor = "#ff3346";
-}
-
-function changeRed() {
-    document.getElementById("redSaber").style["opacity"] = "1";
-    document.getElementById("blueSaber").style["opacity"] = "0.5";
-    document.getElementById("greenSaber").style["opacity"] = "0.5";
-    lightsaberColor = "#ff0000";
-    laserColor = "#00ffff";
-}
 (function e(t, n, r) {
     function s(o, u) {
         if (!n[o]) {
@@ -138,11 +98,11 @@ function changeRed() {
 }, {}],
     2: [function (require, module, exports) {
         function Laser() {
-            var laserGeometry = new THREE.CylinderGeometry(.9, .9, 4, 12);
+            var laserGeometry = new THREE.SphereGeometry(.9, 16, 16);
             var laserMaterial = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: 0.75,
-                color: laserColor
+                color: "#982121"
             });
             var laser = new THREE.Mesh(laserGeometry, laserMaterial);
             laser.rotateZ(Math.PI / 2);
@@ -237,9 +197,9 @@ function changeRed() {
     7: [function (require, module, exports) {
         function Enemy_1() {
             /* ENEMY_1 MODEL */
-            var enemy_1Geometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
+            var enemy_1Geometry = new THREE.SphereGeometry(20, 32, 32);
             var enemy_1Material = new THREE.MeshBasicMaterial({
-                color: "#ffff00"
+                color: "#aa1212"
             });
             enemy_1 = new THREE.Mesh(enemy_1Geometry, enemy_1Material);
             enemy_1.position.set(15, -1000, 0);
