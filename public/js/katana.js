@@ -1,14 +1,11 @@
 var socket = io();
 
-// stores default lightsaber color variable
-var lightsaberColor = {color: "#00ffff"}
-
 var alpha, beta, gamma;
 alpha = document.getElementById("alpha");
 beta = document.getElementById("beta");
 gamma = document.getElementById("gamma");
 
-socket.emit('lightsaberjoin', {room: roomId});
+socket.emit('katanajoin', {room: roomId});
 
 socket.on('beginsetup', function(data){
 	 window.addEventListener("compassneedscalibration", function(event) {
@@ -74,17 +71,13 @@ function changeAudio(){
     }
 }
 
-function changeColor(sabercolor){
-    lightsaberColor = {color: sabercolor}
-}
-
 // starts game 
 function startgame(){
-    socket.emit('startedGame', lightsaberColor);
-    // displays main lightsaber on controller
+    socket.emit('startedGame', "#00ffff");
+    // displays main katana on controller
     $('#center').fadeIn(500);
 
-    // hides smaller lightsabers and button
+    // hides smaller katana and button
     $('.saber').fadeOut(100);
     $('.confirm-button').fadeOut(100);
     $('.landing').fadeOut(100);
