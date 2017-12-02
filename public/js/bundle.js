@@ -36,7 +36,7 @@ var gameOver = false;
 
             var corridor = new THREE.Object3D();
 
-            var wallGeometry = new THREE.PlaneGeometry(400, 500);
+            var wallGeometry = new THREE.PlaneGeometry(100, 125);
 
             var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
