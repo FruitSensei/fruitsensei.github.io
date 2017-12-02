@@ -60,17 +60,6 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 map: ceilTexture
             });
 
-            var frontGeometry = new THREE.PlaneGeometry(160, 150);
-            var frontTexture = textureLoader.load("/textures/dojo_front.jpg");
-            frontTexture.wrapS = THREE.RepeatWrapping;
-            frontTexture.wrapT = THREE.RepeatWrapping;
-            frontTexture.repeat.set(1, 1);
-            var frontMaterial = new THREE.MeshPhongMaterial({
-                color: 0xffffff,
-                shading: THREE.FlatShading,
-                map: frontTexture
-            });
-
             var wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
             wall1.position.set(0, 0, -80);
 
@@ -78,9 +67,13 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(0, 0, 80);
             wall2.rotateY(Math.PI);
 
-            var front = new THREE.Mesh(frontGeometry, frontMaterial);
-            front.rotateY(Math.PI / 2);
-            front.position.set(50, 0, 0);
+            var front = wall2.clone();
+            front.position.set(80, 0, 0);
+            front.rotateX(Math.PI / 2);
+
+            var back = front.clone();
+            back.position.set(80, 0, 0);
+            back.rotateX(Math.PI / 2);
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
