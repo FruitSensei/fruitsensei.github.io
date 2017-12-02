@@ -104,7 +104,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 }, {}],
     2: [function (require, module, exports) {
         function Laser() {
-            var currentFruit = fruits[Math.floor(Math.random() * 3)];
+            var currentFruit = fruits[Math.floor(Math.random()*3)];
             if (currentFruit == "Apple") {
                 var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
@@ -474,13 +474,13 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
         function setupGame() {
             scene.add(hand);
-            laser = new Laser();
             window.addEventListener('deviceorientation', setOrientationControls, true);
             // Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
             window.setInterval(function () {
-                var newLaser = laser.clone();
+                var newLaser = new Laser();
                 newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
+                newLaser.fruitNum = Math.floor(Math.random()*3);
                 newLaser.velocity = new THREE.Vector3(0, -0.25, 0);
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
