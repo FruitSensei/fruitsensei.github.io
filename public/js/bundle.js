@@ -98,12 +98,8 @@ var gameOver = false;
 }, {}],
     2: [function (require, module, exports) {
         function Laser() {
-            var laserGeometry = new THREE.SphereGeometry(.9, 16, 16);
-            var laserMaterial = new THREE.MeshBasicMaterial({
-                transparent: true,
-                opacity: 0.75,
-                color: "#982121"
-            });
+            var laserGeometry = new THREE.SphereGeometry(1, 32, 32);
+            var laserMaterial = new THREE.MeshLambertMaterial({color: 0xff9900});
             var laser = new THREE.Mesh(laserGeometry, laserMaterial);
             laser.rotateZ(Math.PI / 2);
             return laser;
