@@ -81,10 +81,15 @@ canvas {
     opacity: 1;
 }
 
+#logo {
+    padding: 40px;
+    width: 600px;
+}
+
 #qrcode {
     margin-top: 20px;
     margin-bottom: 20px;
-    border: solid 5px #22c6ef;
+    border: solid 5px #00ba00;
     border-radius: 10px;
 }
 
