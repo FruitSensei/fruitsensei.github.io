@@ -36,12 +36,12 @@ var gameOver = false;
 
             var corridor = new THREE.Object3D();
 
-            var wallGeometry = new THREE.PlaneGeometry(100, 150);
+            var wallGeometry = new THREE.PlaneGeometry(1450, 475);
 
             var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
             wallTexture.wrapT = THREE.RepeatWrapping;
-            wallTexture.repeat.set(5, 5);
+            wallTexture.repeat.set(3, 1);
             // Floor Material
             var wallMaterial = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
@@ -50,7 +50,6 @@ var gameOver = false;
                 shading: THREE.FlatShading,
                 map: wallTexture
             });
-
 
             var ceilGeometry = new THREE.PlaneGeometry(100, 70);
             var ceilMaterial = new THREE.MeshBasicMaterial({
