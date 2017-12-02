@@ -187,7 +187,7 @@ function changeRed() {
             /* HANDLE */
             var handGeometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
             var handMaterial = new THREE.MeshBasicMaterial({
-                color: "#545355"
+                color: "#141414"
             });
             hand = new THREE.Mesh(handGeometry, handMaterial);
             hand.position.set(15, 6, camera.position.z / 2);
@@ -199,20 +199,19 @@ function changeRed() {
     5: [function (require, module, exports) {
         function Lightsaber() {
             /* LIGHTSABER MODEL */
-            var lsGeometry = new THREE.CylinderGeometry(0.4, 0.4, 30, 20);
+            var lsGeometry = new THREE.BoxGeometry(0.4, 0.3, 30);
             var lsMaterial = new THREE.MeshBasicMaterial({
                 color: "white"
             });
             lightsaber = new THREE.Mesh(lsGeometry, lsMaterial);
             lightsaber.position.setY(15);
-            var glowGeometry = new THREE.CylinderGeometry(0.5, 0.5, 30, 20);
+            var glowGeometry = new THREE.BoxGeometry(0.5, 0.4, 30);
             var glowMaterial = new THREE.MeshBasicMaterial({
                 transparent: true,
                 opacity: 0.5,
-                color: lightsaberColor
+                color: "#ccc"
             });
             var glow = new THREE.Mesh(glowGeometry, glowMaterial);
-
             lightsaber.add(glow);
             return lightsaber;
         }
