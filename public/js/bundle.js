@@ -115,7 +115,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 laserTexture.repeat.set(1, 1);
             } else if (currentFruit == "Watermelon") {
                 var laserGeometry = new THREE.SphereGeometry(2, 16, 12);
-                laserGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.5));
+                laserGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.0));
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_watermelon.jpg");
                 laserTexture.repeat.set(3, 1);
             }
