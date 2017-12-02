@@ -38,7 +38,7 @@ var gameOver = false;
 
             var wallGeometry = new THREE.PlaneGeometry(100, 150);
 
-            var wallTexture = textureLoader.load("/textures/wall_deathstar.jpg");
+            var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
             wallTexture.wrapT = THREE.RepeatWrapping;
             wallTexture.repeat.set(5, 5);
@@ -59,7 +59,7 @@ var gameOver = false;
 
             var doorGeometry = new THREE.PlaneGeometry(70, 150);
 
-            var doorTexture = textureLoader.load("/textures/floor_metal.jpg");
+            var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
             doorTexture.wrapS = THREE.RepeatWrapping;
             doorTexture.wrapT = THREE.RepeatWrapping;
             doorTexture.repeat.set(5, 5);
@@ -458,7 +458,7 @@ var gameOver = false;
                 var newLaser = laser.clone();
                 newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
-                newLaser.velocity = new THREE.Vector3(0, -0.5, 0);
+                newLaser.velocity = new THREE.Vector3(0, -0.25, 0);
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
@@ -582,11 +582,9 @@ var gameOver = false;
                     lasers.splice(i, 1);
                 }
             }
-
             if (isMobile) {
                 controls.update();
             }
-
         }
 
         $(document).ready(function () {
@@ -595,13 +593,6 @@ var gameOver = false;
                 animate();
             });
         });
-
-        // initiates powerAttack_1
-        function init_powerAttack_1() {
-            console.log("Initiated powerAttack_1");
-            // debug test to see if lasers can used globally
-            console.log(lasers);
-        }
 
         /* SOCKET.IO */
 
@@ -622,7 +613,7 @@ var gameOver = false;
 
         // initiates game
         socket.on('beginGame', function (data) {
-            console.log("Game has Begun");
+            console.log("Training is starting...");
             init();
             animate();
         });
@@ -631,11 +622,6 @@ var gameOver = false;
             if (hand) {
                 setObjectQuat(hand, data);
             }
-        });
-
-        // initiates powerAttack_1
-        socket.on('init_powerAttack_1', function (data) {
-            init_powerAttack_1();
         });
 
         socket.on('updatemotion', function (data) {});
