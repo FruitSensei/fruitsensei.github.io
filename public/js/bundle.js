@@ -480,10 +480,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 var newLaser = new Laser();
                 newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
-                newLaser.fruitNum = Math.floor(Math.random()*3);
                 newLaser.velocity = new THREE.Vector3(0, -0.25, 0);
-                newLaser.rotation.x -= 0.01;
-                newLaser.rotation.z -= 0.01;
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
@@ -560,6 +557,10 @@ var fruits = ["Apple", "Orange", "Watermelon"];
         function animate() {
             var elapsedSeconds = clock.getElapsedTime();
             requestAnimationFrame(animate);
+            for (var i = 0; i < lasers.length; i++) {
+                lasers[i].rotation.x -= 0.01;
+                lasers[i].rotation.z -= 0.01;
+            }
             update(clock.getDelta());
             if (isMobile) {
                 stereo.render(scene, camera);
