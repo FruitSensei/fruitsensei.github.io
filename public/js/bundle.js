@@ -80,6 +80,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
     2: [function (require, module, exports) {
         function Laser() {
             var currentFruit = fruits[Math.floor(Math.random() * 3)];
+            this.fruitType = currentFruit;
             if (currentFruit == "Apple") {
                 var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
