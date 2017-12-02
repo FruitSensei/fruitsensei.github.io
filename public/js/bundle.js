@@ -83,14 +83,11 @@ var gameOver = false;
             door.rotateY(Math.PI / 2);
             door.position.set(-20, 0, 0);
 
-
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
             ceil.position.set(-20, 50, 0);
 
-
             corridor.add(wall1, wall2, door, ceil);
-
             return corridor;
         }
         module.exports = Corridor;
@@ -299,7 +296,6 @@ var gameOver = false;
     9: [function (require, module, exports) {
 
         var socket = io();
-
         var scene,
             width,
             height,
@@ -321,7 +317,6 @@ var gameOver = false;
             soundDir,
             started,
             enemy_1;
-
 
         var Sky = require('../../assets/Sky');
         var Floor = require('../../assets/Floor');
@@ -470,9 +465,9 @@ var gameOver = false;
             // Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
             window.setInterval(function () {
                 var newLaser = laser.clone();
-                newLaser.position.set(50, 200, Utils.getRandomInRange(-10, 10));
+                newLaser.position.set(30, 100, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
-                newLaser.velocity = new THREE.Vector3(0, -1.2, 0);
+                newLaser.velocity = new THREE.Vector3(0, -0.5, 0);
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
@@ -595,7 +590,6 @@ var gameOver = false;
                     scene.remove(e);
                     lasers.splice(i, 1);
                 }
-
             }
 
             if (isMobile) {
