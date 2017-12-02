@@ -60,20 +60,20 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 map: ceilTexture
             });
 
-            //            var doorGeometry = new THREE.PlaneGeometry(70, 150);
-            //
-            //            var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
-            //            doorTexture.wrapS = THREE.RepeatWrapping;
-            //            doorTexture.wrapT = THREE.RepeatWrapping;
-            //            doorTexture.repeat.set(5, 5);
-            //            // Floor Material
-            //            var doorMaterial = new THREE.MeshPhongMaterial({
-            //                color: 0xffffff,
-            //                specular: 0xffffff,
-            //                shininess: 5,
-            //                shading: THREE.FlatShading,
-            //                map: doorTexture
-            //            });
+                        var doorGeometry = new THREE.PlaneGeometry(70, 150);
+            
+                        var doorTexture = textureLoader.load("/textures/dojo_back.jpg");
+                        doorTexture.wrapS = THREE.RepeatWrapping;
+                        doorTexture.wrapT = THREE.RepeatWrapping;
+                        doorTexture.repeat.set(5, 5);
+                        // Floor Material
+                        var doorMaterial = new THREE.MeshPhongMaterial({
+                            color: 0xffffff,
+                            specular: 0xffffff,
+                            shininess: 5,
+                            shading: THREE.FlatShading,
+                            map: doorTexture
+                        });
 
             var wall1 = new THREE.Mesh(wallGeometry, wallMaterial);
             wall1.position.set(20, 0, -80);
@@ -82,15 +82,15 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(20, 0, 80);
             wall2.rotateY(Math.PI);
 
-            //            var door = new THREE.Mesh(doorGeometry, doorMaterial);
-            //            door.rotateY(Math.PI / 2);
-            //            door.position.set(-20, 0, 0);
+                        var door = new THREE.Mesh(doorGeometry, doorMaterial);
+                        door.rotateY(Math.PI / 2);
+                        door.position.set(-20, 0, 0);
 
             var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
             ceil.rotateX(-Math.PI / 2);
             ceil.position.set(-20, 150, 0);
 
-            corridor.add(wall1, wall2, ceil); //Removed "door"
+            corridor.add(wall1, wall2, ceil, door);
             return corridor;
         }
         module.exports = Corridor;
