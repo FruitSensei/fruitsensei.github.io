@@ -36,7 +36,7 @@ var gameOver = false;
 
             var corridor = new THREE.Object3D();
 
-            var wallGeometry = new THREE.PlaneGeometry(200, 200);
+            var wallGeometry = new THREE.PlaneGeometry(400, 500);
 
             var wallTexture = textureLoader.load("/textures/dojo_wall.jpg");
             wallTexture.wrapS = THREE.RepeatWrapping;
@@ -129,7 +129,7 @@ var gameOver = false;
             });
 
             // Floor Geometry
-            var floorGeometry = new THREE.PlaneGeometry(500, 500);
+            var floorGeometry = new THREE.PlaneGeometry(200, 200);
             floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
 
