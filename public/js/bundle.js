@@ -83,7 +83,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             } else if (currentFruit == "Orange") {
                 var fruitGeometry = new THREE.SphereGeometry(1, 32, 32);
                 var fruitTexture = new THREE.TextureLoader().load("/textures/fruit_orange.jpg");
-                laserTexture.repeat.set(1, 1);
+                fruitTexture.repeat.set(1, 1);
             } else if (currentFruit == "Watermelon") {
                 var fruitGeometry = new THREE.SphereGeometry(2, 16, 12);
                 fruitGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.0));
@@ -96,7 +96,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             fruitTexture.wrapS = THREE.RepeatWrapping;
             fruitTexture.wrapT = THREE.RepeatWrapping;
             fruitMaterial.map = fruitTexture;
-            var laser = new THREE.Mesh(fruitGeometry, fruitMaterial);
+            var fruit = new THREE.Mesh(fruitGeometry, fruitMaterial);
             fruit.fruitType = currentFruit;
             fruit.rotateZ(Math.PI / 2);
             return fruit;
