@@ -462,7 +462,7 @@ var gameOver = false;
                 var newLaser = laser.clone();
                 newLaser.position.set(50, 200, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
-                newLaser.velocity = new THREE.Vector3(-1.2, 0, 0);
+                newLaser.velocity = new THREE.Vector3(0, -1.2, 0);
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
