@@ -460,7 +460,7 @@ var gameOver = false;
             // Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
             window.setInterval(function () {
                 var newLaser = laser.clone();
-                newLaser.position.set(200, Utils.getRandomInRange(5, 25), Utils.getRandomInRange(-10, 10));
+                newLaser.position.set(50, 200, Utils.getRandomInRange(-10, 10));
                 newLaser.name = "laser";
                 newLaser.velocity = new THREE.Vector3(-1.2, 0, 0);
                 lasers.push(newLaser);
@@ -581,7 +581,7 @@ var gameOver = false;
             for (var i = 0; i < lasers.length; i++) {
                 var e = lasers[i];
                 e.position.add(e.velocity);
-                if (e.position.x < -10 || e.position.x > 200) {
+                if (e.position.y < -10 || e.position.y > 200) {
                     scene.remove(e);
                     lasers.splice(i, 1);
                 }
