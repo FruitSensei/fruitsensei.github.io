@@ -15,7 +15,7 @@ var bitly = new Bitly('e7d67277347e7c7b79b591cafa422a22e9a380fb');
 
 app.get('/', function (req, res) {
 	var room = shortid.generate();
-    bitly.shorten('http://fruitsensei.tech/lightsaber/'+room). then(function(response){
+    bitly.shorten('http://fruitsensei.tech/katana/'+room). then(function(response){
 		res.render('viewer', {room: room, roomURL: response.data.url});
 	}, function(error){
 		throw error;
@@ -23,8 +23,8 @@ app.get('/', function (req, res) {
 	rooms.push(room);
 });
 
-app.get('/lightsaber/:roomId', function (req, res){
-	res.render('lightsaber', {room: req.params.roomId});
+app.get('/katana/:roomId', function (req, res){
+	res.render('katana', {room: req.params.roomId});
 });
 
 var port = process.env.PORT || 3000;
@@ -42,11 +42,11 @@ io.on('connection', function (socket) {
 - GET /lightsaber
 - Input ROOM ID from VIEWER
 - LIGHTSABER joins socket room with ROOM ID
-	- SERVER tells VIEWER and LIGHTSABER to begincalibration
+	- SERVER tells VIEWER and KATANA to begincalibration
 - LIGHTSABER tells SERVER that calibrationcomplete
 	- SERVER tells VIEWER that calibrationcomplete
 - VIEWER tells SERVER that viewerready
-	- SERVER tells LIGHTSABER that viewerready
+	- SERVER tells KATANA that viewerready
 - LIGHTSABER tells SERVER sendmotion with data
 	- SERVER tells VIEWER motionupdate with data
 */
@@ -58,19 +58,19 @@ io.on('connection', function (socket) {
 		console.log("Viewer joined: "+socket.room);
 	});
 
-	socket.on('lightsaberjoin', function(data){
+	socket.on('katanajoin', function(data){
 		socket.room = data.room;
 		socket.join(socket.room);
 
 		io.sockets.in(socket.room).emit('beginsetup');
 
-		console.log("Lightsaber joined: "+socket.room);
+		console.log("Katana joined: "+socket.room);
 	});
 
 	socket.on('setupcomplete', function(data){
 		socket.broadcast.to(socket.room).emit('setupcomplete');
 
-		console.log("Lightsaber setup complete: "+socket.room);
+		console.log("Katana setup complete: "+socket.room);
 	});
 
 	socket.on('viewready', function(data){
