@@ -67,14 +67,6 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(0, 0, 80);
             wall2.rotateY(Math.PI);
 
-            var front = wall2.clone();
-            front.position.set(80, 0, 0);
-            front.rotateX(Math.PI / 2);
-
-            var back = front.clone();
-            back.position.set(80, 0, 0);
-            back.rotateX(Math.PI / 2);
-
 //            var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
 //            ceil.rotateX(-Math.PI / 2);
 //            ceil.position.set(0, 150, 0);
@@ -88,6 +80,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
     2: [function (require, module, exports) {
         function Laser() {
             var currentFruit = fruits[Math.floor(Math.random() * 3)];
+            this.type = currentFruit;
             if (currentFruit == "Apple") {
                 var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
@@ -568,9 +561,16 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             // ALSO updates "score" to document each time laser is hit
             Utils.checkCollision(lightsaber.children[0], "laser", true, function (result) {
                 if (result) {
+                    console.log(result.type);
                     socket.emit('sendhit');
                     result.velocity = new THREE.Vector3(.7, 0, 0);
-                    score++;
+                    if (result.type = "Orange"){ 
+                        score = score + 10;
+                    } else if (result.type = "Apple"){ 
+                        score = score + 20;
+                    } else if (result.type = "Watermelon"){ 
+                        score = score + 30;
+                    }
                     document.getElementById("score").innerHTML = score;
                     // play random hit sound when deflecting
                     var hitSound = new Audio(hitSounds[Math.floor(Math.random() * 4)]);
