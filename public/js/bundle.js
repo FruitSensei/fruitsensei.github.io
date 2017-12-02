@@ -421,9 +421,23 @@ var gameOver = false;
             Utils.collidableMeshList.push(lightsaber);
 
             /* LIGHTING */
-            lightAngle = new THREE.PointLight(0x999999, 1, 500);
-            lightAngle.position.set(0, 50, 0);
-            scene.add(lightAngle);
+//            lightAngle = new THREE.PointLight(0x999999, 1, 500);
+//            lightAngle.position.set(0, 50, 0);
+//            scene.add(lightAngle);
+
+            var spotLight = new THREE.SpotLight(0xffffff);
+            spotLight.position.set(-2, 2, 8);
+
+            spotLight.castShadow = true;
+
+            spotLight.shadow.mapSize.width = 1024;
+            spotLight.shadow.mapSize.height = 1024;
+
+            spotLight.shadow.camera.near = 500;
+            spotLight.shadow.camera.far = 4000;
+            spotLight.shadow.camera.fov = 30;
+
+            scene.add(spotLight);
 
             // AXIS
             var axis = new THREE.AxisHelper(200);
