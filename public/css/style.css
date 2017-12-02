@@ -1,7 +1,7 @@
 body {
     text-align: center;
     margin: 0;
-    background-color: #000000;
+    background-color: #270d02;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: 300;
     color: white;
@@ -82,7 +82,7 @@ canvas {
 }
 
 #logo {
-    padding: 40px;
+    padding: 40px 0 30px 0;
     width: 600px;
 }
 

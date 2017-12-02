@@ -15,7 +15,7 @@ var bitly = new Bitly('e7d67277347e7c7b79b591cafa422a22e9a380fb');
 
 app.get('/', function (req, res) {
 	var room = shortid.generate();
-    bitly.shorten('https://'+req.headers.host+'/lightsaber/'+room). then(function(response){
+    bitly.shorten('http//fruitsensei.tech/lightsaber/'+room). then(function(response){
 		res.render('viewer', {room: room, roomURL: response.data.url});
 	}, function(error){
 		throw error;
