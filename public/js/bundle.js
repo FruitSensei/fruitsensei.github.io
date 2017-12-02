@@ -114,7 +114,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_orange.jpg");
                 laserTexture.repeat.set(1, 1);
             } else if (currentFruit == "Watermelon") {
-                var laserGeometry = new THREE.SphereGeometry(1, 16, 12);
+                var laserGeometry = new THREE.SphereGeometry(2, 16, 12);
                 laserGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.5));
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_watermelon.jpg");
                 laserTexture.repeat.set(3, 1);
@@ -482,6 +482,8 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 newLaser.name = "laser";
                 newLaser.fruitNum = Math.floor(Math.random()*3);
                 newLaser.velocity = new THREE.Vector3(0, -0.25, 0);
+                newLaser.rotation.x -= 0.01;
+                newLaser.rotation.z -= 0.01;
                 lasers.push(newLaser);
                 Utils.collidableMeshList.push(newLaser);
                 scene.add(newLaser);
