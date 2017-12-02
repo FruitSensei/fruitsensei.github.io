@@ -80,7 +80,6 @@ var fruits = ["Apple", "Orange", "Watermelon"];
     2: [function (require, module, exports) {
         function Laser() {
             var currentFruit = fruits[Math.floor(Math.random() * 3)];
-            this.fruitType = currentFruit;
             if (currentFruit == "Apple") {
                 var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
                 var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
@@ -561,8 +560,8 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             // ALSO updates "score" to document each time laser is hit
             Utils.checkCollision(lightsaber.children[0], "laser", true, function (result) {
                 if (result) {
-                    console.log(result.fruitType);
                     socket.emit('sendhit');
+                    console.log(result);
                     result.velocity = new THREE.Vector3(.7, 0, 0);
                     if (result.fruitType = "Orange"){ 
                         score = score + 10;
