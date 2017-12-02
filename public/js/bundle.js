@@ -375,11 +375,11 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
                         // hide intro message at certain time
                         if (timer == 60) {
-                            $("#timer").fadeIn(500);
-                            $("#timertitle").fadeIn(500);
-                            $("#score").fadeIn(500);
-                            $("#scoretitle").fadeIn(500);
-                            $("#introMessage").fadeOut(500);
+                            $("#timer").fadeIn(200);
+                            $("#timertitle").fadeIn(200);
+                            $("#score").fadeIn(200);
+                            $("#scoretitle").fadeIn(200);
+                            $("#introMessage").fadeOut(200);
                         } else if (timer == 0) {
                             // play outro message at end of timer
                             playoutroMessage();
