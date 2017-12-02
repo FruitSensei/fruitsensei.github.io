@@ -1,5 +1,5 @@
 {
-  "name": "vr-lightsaber",
+  "name": "vr-stuyhacks",
   "version": "1.0.2",
   "description": "",
   "main": "server.min.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.min.js"
   },
-  "author": "Navid Mamoon & Adonis Pujols",
+  "author": "Navid Mamoon, Jonathan Lam, Pratham Gandhi",
   "license": "ISC",
   "dependencies": {
     "bitly": "^4.1.1",

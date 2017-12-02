@@ -67,10 +67,6 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             wall2.position.set(0, 0, 80);
             wall2.rotateY(Math.PI);
 
-//            var ceil = new THREE.Mesh(ceilGeometry, ceilMaterial);
-//            ceil.rotateX(-Math.PI / 2);
-//            ceil.position.set(0, 150, 0);
-
             corridor.add(wall1, wall2);
             return corridor;
         }
@@ -78,48 +74,45 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
 }, {}],
     2: [function (require, module, exports) {
-        function Laser() {
+        function Fruit() {
             var currentFruit = fruits[Math.floor(Math.random() * 3)];
             if (currentFruit == "Apple") {
-                var laserGeometry = new THREE.SphereGeometry(1.5, 32, 32);
-                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
-                laserTexture.repeat.set(1, 1);
+                var fruitGeometry = new THREE.SphereGeometry(1.5, 32, 32);
+                var fruitTexture = new THREE.TextureLoader().load("/textures/fruit_apple.jpg");
+                fruitTexture.repeat.set(1, 1);
             } else if (currentFruit == "Orange") {
-                var laserGeometry = new THREE.SphereGeometry(1, 32, 32);
-                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_orange.jpg");
+                var fruitGeometry = new THREE.SphereGeometry(1, 32, 32);
+                var fruitTexture = new THREE.TextureLoader().load("/textures/fruit_orange.jpg");
                 laserTexture.repeat.set(1, 1);
             } else if (currentFruit == "Watermelon") {
-                var laserGeometry = new THREE.SphereGeometry(2, 16, 12);
-                laserGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.0));
-                var laserTexture = new THREE.TextureLoader().load("/textures/fruit_watermelon.jpg");
-                laserTexture.repeat.set(3, 1);
+                var fruitGeometry = new THREE.SphereGeometry(2, 16, 12);
+                fruitGeometry.applyMatrix(new THREE.Matrix4().makeScale(1.0, 1.5, 1.0));
+                var fruitTexture = new THREE.TextureLoader().load("/textures/fruit_watermelon.jpg");
+                fruitTexture.repeat.set(3, 1);
             }
-            var laserMaterial = new THREE.MeshBasicMaterial({
+            var fruitMaterial = new THREE.MeshBasicMaterial({
                 color: 0xff9900
             });
-            laserTexture.wrapS = THREE.RepeatWrapping;
-            laserTexture.wrapT = THREE.RepeatWrapping;
-            laserMaterial.map = laserTexture;
-            var laser = new THREE.Mesh(laserGeometry, laserMaterial);
-            laser.fruitType = currentFruit;
-            laser.rotateZ(Math.PI / 2);
-            return laser;
+            fruitTexture.wrapS = THREE.RepeatWrapping;
+            fruitTexture.wrapT = THREE.RepeatWrapping;
+            fruitMaterial.map = fruitTexture;
+            var laser = new THREE.Mesh(fruitGeometry, fruitMaterial);
+            fruit.fruitType = currentFruit;
+            fruit.rotateZ(Math.PI / 2);
+            return fruit;
         }
-        module.exports = Laser;
+        module.exports = Fruit;
 
 }, {}],
     3: [function (require, module, exports) {
         function Floor(textureLoader, renderer) {
 
-            /* FLOOR */
-            // Floor Texture
             var floorTexture = textureLoader.load("/textures/dojo_floor.jpg");
             floorTexture.wrapS = THREE.RepeatWrapping;
             floorTexture.wrapT = THREE.RepeatWrapping;
             floorTexture.repeat.set(5, 5);
             floorTexture.anisotropy = renderer.getMaxAnisotropy();
 
-            // Floor Material
             var floorMaterial = new THREE.MeshPhongMaterial({
                 color: 0xffffff,
                 specular: 0xffffff,
@@ -128,12 +121,10 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 map: floorTexture
             });
 
-            // Floor Geometry
             var floorGeometry = new THREE.PlaneGeometry(200, 200);
             floor = new THREE.Mesh(floorGeometry, floorMaterial);
             floor.rotation.x = -Math.PI / 2;
-
-            // return floor;
+            
             return floor;
         }
         module.exports = Floor;
@@ -141,7 +132,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 }, {}],
     4: [function (require, module, exports) {
         function Hand(camera) {
-            /* HANDLE */
+            /* Katana Handle */
             var handGeometry = new THREE.CylinderGeometry(.7, .7, 6, 7);
             var handMaterial = new THREE.MeshBasicMaterial({
                 color: "#141414"
@@ -154,14 +145,14 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
 }, {}],
     5: [function (require, module, exports) {
-        function Lightsaber() {
-            /* LIGHTSABER MODEL */
+        function Katana() {
+            /* Katana Model */
             var lsGeometry = new THREE.BoxGeometry(0.4, 30, 0.5);
             var lsMaterial = new THREE.MeshBasicMaterial({
                 color: "white"
             });
-            lightsaber = new THREE.Mesh(lsGeometry, lsMaterial);
-            lightsaber.position.setY(15);
+            katana = new THREE.Mesh(lsGeometry, lsMaterial);
+            katana.position.setY(15);
             var glowGeometry = new THREE.BoxGeometry(0.5, 30, 0.4);
             var glowMaterial = new THREE.MeshBasicMaterial({
                 transparent: true,
@@ -169,10 +160,10 @@ var fruits = ["Apple", "Orange", "Watermelon"];
                 color: "#ccc"
             });
             var glow = new THREE.Mesh(glowGeometry, glowMaterial);
-            lightsaber.add(glow);
-            return lightsaber;
+            katana.add(glow);
+            return katana;
         }
-        module.exports = Lightsaber;
+        module.exports = Katana;
 
 }, {}],
     6: [function (require, module, exports) {
@@ -311,9 +302,9 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             container,
             domElement,
             hand,
-            laser,
-            lasers,
-            lightsaber,
+            fruit,
+            storedFruit,
+            katana,
             floor,
             corridor,
             soundDir,
@@ -324,8 +315,8 @@ var fruits = ["Apple", "Orange", "Watermelon"];
         var Floor = require('../../assets/Floor');
         var Corridor = require('../../assets/Corridor');
         var Hand = require('../../assets/Hand');
-        var Lightsaber = require('../../assets/Lightsaber');
-        var Laser = require('../../assets/Laser');
+        var Katana = require('../../assets/Kitana');
+        var Fruit = require('../../assets/Fruit');
         var Enemy_1 = require('../../assets/Enemy_1');
         var Utils = require('./utils');
 
@@ -394,11 +385,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
 
         function setupScene() {
 
-            lasers = []; // Keep lasers in here so we can manipulate them in update()
-
-//            var sky = new Sky(textureLoader);
-//            console.log(sky);
-//            scene.add(sky);
+            storedFruit = []; // Keep stored fruit in here so we can manipulate them in update()
 
             floor = new Floor(textureLoader, renderer);
             scene.add(floor);
@@ -406,12 +393,12 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             corridor = new Corridor(textureLoader);
             scene.add(corridor);
 
-            // Compound object from parent to child: Camera -> Hand -> Lightsaber -> Glow
+            // Compound object from parent to child: Camera -> Hand -> Katana -> Glow
             hand = new Hand(camera);
-            lightsaber = new Lightsaber();
-            hand.add(lightsaber);
+            katana = new Katana();
+            hand.add(katana);
 
-            Utils.collidableMeshList.push(lightsaber);
+            Utils.collidableMeshList.push(katana);
 
             /* LIGHTING */
             lightAngle = new THREE.PointLight(0x999999, 1, 500);
@@ -451,13 +438,13 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             window.addEventListener('deviceorientation', setOrientationControls, true);
             // Every 1.5 seconds, spawn a new laser  at random position and set its velocity to -1, to come at the player
             window.setInterval(function () {
-                var newLaser = new Laser();
-                newLaser.position.set(20, 100, Utils.getRandomInRange(-10, 10));
-                newLaser.name = "laser";
-                newLaser.velocity = new THREE.Vector3(0, -0.20, 0);
-                lasers.push(newLaser);
-                Utils.collidableMeshList.push(newLaser);
-                scene.add(newLaser);
+                var newFruit = new Fruit();
+                newFruit.position.set(20, 100, Utils.getRandomInRange(-10, 10));
+                newFruit.name = "laser";
+                newFruit.velocity = new THREE.Vector3(0, -0.20, 0);
+                storedFruit.push(newFruit);
+                Utils.collidableMeshList.push(newFruit);
+                scene.add(newFruit);
             }, Math.floor((Math.random() * 200) + 900));
         }
 
@@ -497,23 +484,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             gamma = gammaRotation;
             alpha = alphaRotation;
 
-            /*
-            	- [BUG] beta jumps to 180 - theta or theta - 180
-
-            	x = rcos(theta)
-            	y = rsin(theta)
-            	beta - Math.PI/2 because we are still dealing with device in upright position
-            	Added 10 to both to offset the hand in front of the camera
-            	object.position.z = Math.cos(beta - Math.PI/2) -  10;
-            	object.position.y = 5 * Math.sin(beta - Math.PI/2) + 10;
-            */
-            /*	beta - Math.PI/2 because rotations on z-axis are made when device is in upright position
-            	-gamma because of the way the lightsaber is facing the camera
-            */
-
             euler.set(0, -gamma, beta - Math.PI / 2);
-
-            /* Using quaternions to combat gimbal lock */
             object.quaternion.setFromEuler(euler);
         }
 
@@ -531,9 +502,9 @@ var fruits = ["Apple", "Orange", "Watermelon"];
         function animate() {
             var elapsedSeconds = clock.getElapsedTime();
             requestAnimationFrame(animate);
-            for (var i = 0; i < lasers.length; i++) {
-                lasers[i].rotation.x -= 0.03;
-                lasers[i].rotation.z -= 0.02;
+            for (var i = 0; i < storedFruit.length; i++) {
+                storedFruit[i].rotation.x -= 0.03;
+                storedFruit[i].rotation.z -= 0.02;
             }
             update(clock.getDelta());
             if (isMobile) {
@@ -557,9 +528,9 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             // stores urls of all hit sounds
             var hitSounds = ["/sounds/slash1.mp3", "/sounds/slash2.mp3", "/sounds/slash3.mp3"];
 
-            // Check collision with lightsaber and laser at every iteration
+            // Check collision with katana and fruit at every iteration
             // ALSO updates "score" to document each time laser is hit
-            Utils.checkCollision(lightsaber.children[0], "laser", true, function (result) {
+            Utils.checkCollision(katana.children[0], "laser", true, function (result) {
                 if (result) {
                     socket.emit('sendhit');
                     console.log(result);
@@ -581,12 +552,12 @@ var fruits = ["Apple", "Orange", "Watermelon"];
             });
 
             // Apply velocity vector to laser, check if they are out of bounds to remove them
-            for (var i = 0; i < lasers.length; i++) {
-                var e = lasers[i];
+            for (var i = 0; i < storedFruit.length; i++) {
+                var e = storedFruit[i];
                 e.position.add(e.velocity);
                 if (e.position.y < -10 || e.position.y > 200) {
                     scene.remove(e);
-                    lasers.splice(i, 1);
+                    storedFruit.splice(i, 1);
                 }
             }
             if (isMobile) {
@@ -637,7 +608,7 @@ var fruits = ["Apple", "Orange", "Watermelon"];
         "../../assets/Laser": 2,
         "../../assets/Floor": 3,
         "../../assets/Hand": 4,
-        "../../assets/Lightsaber": 5,
+        "../../assets/Katana": 5,
         "../../assets/Sky": 6,
         "../../assets/Enemy_1": 7,
         "./utils": 8
